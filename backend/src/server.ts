@@ -1,7 +1,8 @@
 import express from "express";
 import { Server } from "@overnightjs/core";
 import { Logger } from "@overnightjs/logger";
-import { TestController } from "./sample.controller";
+import { RestaurantController } from "./restaurants";
+import { ReservationController } from "./reservations";
 
 export class SampleServer extends Server {
   constructor() {
@@ -11,9 +12,10 @@ export class SampleServer extends Server {
   }
 
   private setupControllers(): void {
-    const c = new TestController();
-
-    super.addControllers([c]);
+    super.addControllers([
+      new RestaurantController(),
+      new ReservationController(),
+    ]);
   }
 
   public start(port: number): void {

@@ -1,0 +1,1 @@
+export { RestaurantController } from "./RestaurantController";
