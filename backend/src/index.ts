@@ -1,1 +1,3 @@
-console.log("Hello world");
+import { SampleServer } from "./server";
+
+new SampleServer().start(8080);
