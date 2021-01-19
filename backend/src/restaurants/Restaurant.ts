@@ -4,6 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class Restaurant {
   @PrimaryGeneratedColumn("uuid")
   id: string;
+
   @Column()
   name: string;
 }

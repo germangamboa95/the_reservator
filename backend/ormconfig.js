@@ -2,11 +2,11 @@ module.exports = [
     {
         "name": "dev",
         "type": "mysql",
-        host: process.env.DATABASE_URL,
+        host: process.env.DB_HOST,
         database: process.env.DATABASE,
         port: process.env.DB_PORT,
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
         "synchronize": false,
         "logging": true,
         "entities": ["src/**/*.ts"],
@@ -18,19 +18,5 @@ module.exports = [
             "subscribersDir": "src/subscriber"
         }
     },
-    {
-        "name": "production",
-        "type": "mysql",
-        host: process.env.DATABASE_URL,
-        database: process.env.DATABASE,
-        port: process.env.DB_PORT,
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
-        "synchronize": false,
-        "logging": false,
-        "entities": ["build/**/*.js"],
-        "migrations": ["build/migration/**/*.js"],
-        "subscribers": ["build/subscriber/**/*.js"],
 
-    }
 ]

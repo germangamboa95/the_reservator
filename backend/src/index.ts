@@ -1,3 +1,9 @@
-import { SampleServer } from "./server";
+import { initDatabase } from "./database";
+import { Application } from "./server";
 
-new SampleServer().start(8080);
+const boot = async () => {
+  await initDatabase();
+  new Application().start(8080);
+};
+
+boot();

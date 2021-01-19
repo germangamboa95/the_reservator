@@ -4,7 +4,7 @@ import { Logger } from "@overnightjs/logger";
 import { RestaurantController } from "./restaurants";
 import { ReservationController } from "./reservations";
 
-export class SampleServer extends Server {
+export class Application extends Server {
   constructor() {
     super(process.env.NODE_ENV === "development"); // setting showLogs to true
     this.app.use(express.json());
