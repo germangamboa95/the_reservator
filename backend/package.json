@@ -4,18 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "nodemon",
+    "test": "TZ=utc jest --runInBand",
+    "start": "TZ=utc nodemon",
     "build": "rimraf ./build && tsc",
     "start:prod": "npm run build && node build/index.js",
-    "dev:seed": "ts-node ./database/seeders/Seed.ts"
+    "dev:seed": "NODE_ENV=test ts-node ./database/seeders/Seed.ts"
   },
   "keywords": [],
   "author": "germangamoa95",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.9",
     "@types/express": "^4.17.11",
+    "@types/express-jwt": "^6.0.0",
     "@types/faker": "^5.1.5",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^14.14.21",
     "@types/supertest": "^2.0.10",
     "faker": "^5.1.0",
@@ -29,7 +32,11 @@
   },
   "dependencies": {
     "@overnightjs/core": "^1.7.5",
+    "@overnightjs/jwt": "^1.2.0",
     "@overnightjs/logger": "^1.2.0",
+    "cors": "^2.8.5",
+    "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "reflect-metadata": "^0.1.13",

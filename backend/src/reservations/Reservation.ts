@@ -1,3 +1,4 @@
+import { formatISO9075 } from "date-fns";
 import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { Restaurant } from "../restaurants/Restaurant";
 
@@ -6,7 +7,7 @@ export class Reservation {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @ManyToOne(() => Restaurant)
+  @ManyToOne(() => Restaurant, restaurant => restaurant.reservations)
   restaurant: Restaurant;
 
   @Column()
@@ -18,6 +19,18 @@ export class Reservation {
   @Column()
   party_size: number;
 
-  @Column()
-  scheduled_at: Date;
+
+  @Column({
+    transformer: {
+      from(val) {
+        return val // Return utc, client converts to own tz
+      },
+      to(val) {
+
+        return formatISO9075(new Date(val))
+      }
+    },
+    type: "datetime"
+  })
+  scheduled_at: string | Date;
 }
