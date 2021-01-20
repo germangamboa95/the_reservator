@@ -1,8 +1,7 @@
-import { ClassMiddleware, Controller, Get, Middleware, Post } from "@overnightjs/core";
+import { ClassMiddleware, Controller, Get, Post } from "@overnightjs/core";
 import { JwtManager, ISecureRequest } from "@overnightjs/jwt";
-import { formatISO9075 } from "date-fns";
-import { Request, Response } from "express";
-import { AvailabilityBlock } from "./AvailabilityBlock";
+import { Response } from "express";
+import { comparisonFormat } from "../utils";
 import { AvailabilityBlockRepository } from "./AvailabilityRespository";
 import { Reservation } from "./Reservation";
 import { ReservationRepository } from "./ReservationRepository";
@@ -47,7 +46,6 @@ export class ReservationController {
     const date = req.query.date
 
 
-
     let timeblocksQuery = AvailabilityBlockRepository().find({ restaurantId })
 
     const reservationsQuery = ReservationRepository()
@@ -56,20 +54,6 @@ export class ReservationController {
 
 
     let [timeblocks, reservations] = await Promise.all([timeblocksQuery, reservationsQuery])
-
-
-    const comparisonFormat = (str: string | Date) => {
-
-
-      if (typeof str === 'string') {
-        str = new Date(str)
-      }
-
-      const x = formatISO9075(str, { representation: "time" })
-      return new Date(`1/1/2000 ${x}`)
-
-    }
-
 
 
     timeblocks = timeblocks.map(tb => {

@@ -1,5 +1,4 @@
-import { addHours } from "date-fns";
-import faker, { fake } from "faker"
+import faker from "faker"
 import { Reservation } from "../../src/reservations/Reservation";
 import { BaseFactory } from "./BaseFactory";
 import { RestaurantFactory } from "./ResturantFactory";

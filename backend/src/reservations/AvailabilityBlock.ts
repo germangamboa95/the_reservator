@@ -1,22 +1,8 @@
-import { formatISO9075 } from "date-fns";
-import { type } from "os";
-import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, ValueTransformer } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Restaurant } from "../restaurants/Restaurant";
+import { dateTransformer } from "../utils";
 
 
-const dateTransformer: ValueTransformer = {
-  from(val) {
-    return val // Return utc, client converts to own tz
-  },
-  to(val) {
-
-    if (typeof val === 'string') {
-      val = new Date(val)
-    }
-
-    return formatISO9075(val)
-  }
-}
 
 @Entity()
 export class AvailabilityBlock {

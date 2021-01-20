@@ -1,6 +1,6 @@
-import { formatISO9075 } from "date-fns";
-import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Restaurant } from "../restaurants/Restaurant";
+import { dateTransformer } from "../utils";
 
 @Entity()
 export class Reservation {
@@ -21,15 +21,7 @@ export class Reservation {
 
 
   @Column({
-    transformer: {
-      from(val) {
-        return val // Return utc, client converts to own tz
-      },
-      to(val) {
-
-        return formatISO9075(new Date(val))
-      }
-    },
+    transformer: dateTransformer,
     type: "datetime"
   })
   scheduled_at: string | Date;
