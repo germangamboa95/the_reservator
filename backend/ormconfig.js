@@ -7,7 +7,7 @@ module.exports = [
         port: process.env.DB_PORT,
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
-        "synchronize": false,
+        "synchronize": true,
         "logging": true,
         "entities": ["src/**/*.ts"],
         "migrations": ["src/migration/**/*.ts"],
