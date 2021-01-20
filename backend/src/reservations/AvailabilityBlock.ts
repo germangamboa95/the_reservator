@@ -1,9 +1,11 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Restaurant } from "../restaurants/Restaurant";
 
 @Entity()
 export class AvailabilityBlock {
   @PrimaryColumn("uuid")
-  restaurant_id: string;
+  @ManyToOne(() => Restaurant, restaurant => restaurant)
+  restaurant: Restaurant;
 
   @Column()
   start_at: Date;

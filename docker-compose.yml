@@ -16,6 +16,8 @@ services:
       - ./dev.env
     volumes:
       - ./backend:/usr/src/app
+    ports: 
+      - 8080:8080
   # client:
   #   build: ./client
   #   env_file:

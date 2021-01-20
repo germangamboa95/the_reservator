@@ -8,7 +8,7 @@ export class ReservationController {
   protected async list(req: Request, res: Response) {
     const restaurantId = ""; // Comes from token/
     const restaurant = await ReservationRepository().find({
-      restaurant_id: restaurantId,
+      restaurant: {id: restaurantId}
     });
     return res.json({
       data: { restaurant },

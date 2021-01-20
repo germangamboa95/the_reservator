@@ -1,12 +1,13 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Restaurant } from "../restaurants/Restaurant";
 
 @Entity()
 export class Reservation {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
-  restaurant_id: string;
+  @ManyToOne(() => Restaurant)
+  restaurant: Restaurant;
 
   @Column()
   name: string;
