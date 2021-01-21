@@ -8,7 +8,8 @@
     "start": "TZ=utc nodemon",
     "build": "rimraf ./build && tsc",
     "start:prod": "npm run build && node build/index.js",
-    "dev:seed": "NODE_ENV=test ts-node ./database/seeders/Seed.ts"
+    "dev:seed": "NODE_ENV=test ts-node ./database/seeders/Seed.ts",
+    "database:refresh": "NODE_ENV=test ts-node ./rebuildData.ts"
   },
   "keywords": [],
   "author": "germangamoa95",

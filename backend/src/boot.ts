@@ -2,6 +2,7 @@ import { initDatabase } from "./database";
 import { Application } from "./server";
 
 
+const port = process.env.BACKEND_PORT ? +process.env.BACKEND_PORT : 8888
 
 
 if (
@@ -9,7 +10,7 @@ if (
 ) {
   const boot = async () => {
     await initDatabase();
-    new Application().start(8080);
+    new Application().start(port);
   };
 
   boot();

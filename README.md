@@ -6,6 +6,8 @@
   - `docker-compose build --parallel`
   - `docker-compose up`
 
+- Run `docker-compose exec  backend npm run database:refresh` to refresh the database and run the seeder. 
+
 `dev.env` contains all the envs needed to run this project. All values there are assumed to be public.
 
 **IMPORTANT:** backend service is configured to bring database to a usable state via typeorm's`synchronize` option. This is only meant for initial prototyping and can cause issues if ran against an existing database.
@@ -30,85 +32,10 @@ Routes
 - All routes expect bearer token.
 - API expects all times to be in UTC and returns all time in UTC.
 
-`POST /inventories`
-
-```json
-{
-  // Expects the following application/json body
-  "block_start": "",
-  "block_end": "",
-  "stock": ""
-}
-```
-
-`GET /inventories`
-
-```json
-{
-  "data": [
-    {
-      "id":"",
-      "restaurantId": "",
-      "block_start": "",
-      "block_end": "",
-      "stock": ""
-    },
-    ...
-  ]
-}
-```
-
-`GET /reservations`
-
-```json
-{
-  "data": [
-    {
-      "id":"",
-      "restaurant_id": "",
-      "scheduled_at": "",
-      "name": "",
-      "party_size": ""
-    },
-    ...
-  ]
-}
-```
-
-`GET /reservations/times`
-
-```json
-{
-  "data": [
-     {
-      "id":"",
-      "restaurantId": "",
-      "block_start": "",
-      "block_end": "",
-      "stock": "",
-      "reservation_count": ""
-    },
-  ]
-}
-```
-
-`POST /reservations`
-
-```json
-{
-  // Expects the following application/json body
-  "name": "",
-  "email": "",
-  "party_size": 0,
-  "scheduled_at": ""
-}
-```
-
 ### Frontend
 
 #### Techstack
 
 - Typescript
 - Vue 3
-- tailwindcss
 - various utilities (date-fns, axios,...)

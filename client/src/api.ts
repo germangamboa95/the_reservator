@@ -9,7 +9,7 @@ class Api {
 
     public constructor() {
         this.client = axios.create({
-            baseURL: "http://localhost:8080/"
+            baseURL: "http://localhost:3333/"
         })
     }
 
@@ -18,7 +18,7 @@ class Api {
         const { data } = await this.client.post("auth/login");
 
         this.client = axios.create({
-            baseURL: "http://localhost:8080/",
+            baseURL: "http://localhost:3333/",
             headers: {
                 Authorization: `Bearer ${data.jwt}`,
             },

@@ -11,6 +11,6 @@ ENV PATH /usr/src/node_modules/.bin:$PATH
 
 ENTRYPOINT [ "/usr/src/app/entrypoint.sh" ]
 
-EXPOSE 8080
+EXPOSE 3333
 
 CMD ["npm", "start"]
