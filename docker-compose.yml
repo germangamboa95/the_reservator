@@ -14,15 +14,11 @@ services:
     build: ./backend
     env_file:
       - ./dev.env
-    volumes:
-      - ./backend:/usr/src/app
-    ports: 
+    ports:
       - 3333:3333
   client:
     build: ./client
     env_file:
       - ./dev.env
-    volumes:
-      - ./client:/usr/src/app
     ports:
       - 8080:8080
