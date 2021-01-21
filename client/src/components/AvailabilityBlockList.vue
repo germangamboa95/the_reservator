@@ -16,6 +16,8 @@
 <script lang="ts">
 import Vue, { defineComponent } from "vue";
 import { format } from "date-fns";
+import DateMixin from "@/mixins/DateMixin";
+
 export default defineComponent({
   props: {
     blocks: {
@@ -23,20 +25,7 @@ export default defineComponent({
       required: true
     }
   },
-  methods: {
-    formatDate: function (value: Date | string, type: "date" | "time") {
-      if (typeof value === "string") {
-        value = new Date(value);
-      }
-
-      const formatStr = {
-        date: "yyyy/MM/dd",
-        time: "p"
-      };
-
-      return format(value, formatStr[type]);
-    }
-  }
+  mixins: [DateMixin]
 });
 </script>
 

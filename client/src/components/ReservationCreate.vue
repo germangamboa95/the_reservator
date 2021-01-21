@@ -46,10 +46,11 @@ import { api } from "../api";
 import { format } from "date-fns";
 import { defineComponent } from "vue";
 import { utcToZonedTime, zonedTimeToUtc } from "date-fns-tz";
-const getTimeZoneValue = () => Intl.DateTimeFormat().resolvedOptions().timeZone;
+import DateMixin from "@/mixins/DateMixin";
 
 export default defineComponent({
   emits: ["reservation_created"],
+  mixins: [DateMixin],
   data() {
     return {
       form: {
@@ -91,6 +92,10 @@ export default defineComponent({
         scheduled_at: utcDatetime
       });
 
+      this.$emit("reservation_created");
+      this.stateReset();
+    },
+    stateReset() {
       this.form = {
         name: "",
         email: "",
@@ -98,21 +103,9 @@ export default defineComponent({
         scheduled_at: ""
       };
 
-      this.$emit("reservation_created");
-    },
-    formatHour: function (value: Date | string, type: "value" | "display") {
-      if (typeof value === "string") {
-        value = new Date(value);
-      }
-
-      const formatStr = {
-        value: "HH:mm:ss",
-        display: "p"
-      };
-
-      const localTime = zonedTimeToUtc(value, getTimeZoneValue());
-
-      return format(localTime, formatStr[type]);
+      this.reservation_date = "";
+      this.reservation_time = "";
+      this.availableTimes = [];
     }
   }
 });
