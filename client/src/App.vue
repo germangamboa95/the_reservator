@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <router-link to="/reservations">Reservations</router-link>
-    <router-link to="/settings">Settings</router-link>
+    <router-link to="/availability">Availability</router-link>
   </div>
   <router-view />
 </template>

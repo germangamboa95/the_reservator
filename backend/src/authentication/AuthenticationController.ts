@@ -1,9 +1,11 @@
-import { Controller, Post } from "@overnightjs/core";
+import { ClassWrapper, Controller, Post } from "@overnightjs/core";
 import { JwtManager } from "@overnightjs/jwt";
 import { Request, Response } from "express";
+import expressAsyncHandler from "express-async-handler";
 import { RestaurantRepository } from "../restaurants/RestaurantRepository";
 
 @Controller("auth")
+@ClassWrapper(expressAsyncHandler)
 export class AuthenticationController {
     @Post("login")
     protected async test(req: Request, res: Response) {

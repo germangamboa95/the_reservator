@@ -4,8 +4,8 @@ import Settings from "../views/Settings.vue";
 import Reservations from "../views/Reservations.vue";
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/settings",
-    name: "Settings",
+    path: "/availability",
+    name: "Availability",
     component: Settings
   },
   {

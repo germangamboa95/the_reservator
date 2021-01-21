@@ -1,3 +1,4 @@
+import { IsDateString, IsDefined, IsNumber } from "class-validator";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Restaurant } from "../restaurants/Restaurant";
 import { dateTransformer } from "../utils";
@@ -19,15 +20,18 @@ export class AvailabilityBlock {
     transformer: dateTransformer,
     type: 'datetime'
   })
+  @IsDateString()
   start_at: string;
 
   @Column({
     transformer: dateTransformer,
     type: 'datetime'
   })
+  @IsDateString()
   end_at: string;
 
   @Column()
+  @IsDefined()
   capacity: number;
 
   reservation_count?: number

@@ -67,6 +67,8 @@ export default defineComponent({
   },
   watch: {
     async reservation_date(newVal) {
+      if (newVal.length === 0) return;
+
       const { data } = await api.getAvailableTimes(newVal);
 
       let timeblocks = data.data;

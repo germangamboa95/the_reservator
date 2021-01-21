@@ -1,6 +1,9 @@
-import { ClassMiddleware, Controller, Get, Post } from "@overnightjs/core";
+import { ClassErrorMiddleware, ClassMiddleware, ClassWrapper, Controller, Get, Middleware, Post } from "@overnightjs/core";
 import { JwtManager, ISecureRequest } from "@overnightjs/jwt";
 import { Response } from "express";
+import expressAsyncHandler from "express-async-handler";
+import { defaultErrorHandler } from "../middleware/Errors";
+import { Validate } from "../middleware/Validation";
 import { comparisonFormat } from "../utils";
 import { AvailabilityBlockRepository } from "./AvailabilityRespository";
 import { Reservation } from "./Reservation";
@@ -8,6 +11,8 @@ import { ReservationRepository } from "./ReservationRepository";
 
 @Controller("reservations")
 @ClassMiddleware(JwtManager.middleware)
+@ClassWrapper(expressAsyncHandler)
+@ClassErrorMiddleware(defaultErrorHandler)
 export class ReservationController {
   @Get("")
   protected async list(req: ISecureRequest, res: Response) {
@@ -23,6 +28,7 @@ export class ReservationController {
   }
 
   @Post("")
+  @Middleware(Validate(Reservation))
   protected async store(req: ISecureRequest, res: Response) {
     const restaurantId = req.payload.restaurant_id
     const data = req.body

@@ -1,3 +1,4 @@
+import { IsDateString, IsDefined, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Restaurant } from "../restaurants/Restaurant";
 import { dateTransformer } from "../utils";
@@ -11,12 +12,16 @@ export class Reservation {
   restaurant: Restaurant;
 
   @Column()
+  @IsString()
+  @IsNotEmpty()
   name: string;
 
   @Column()
+  @IsEmail()
   email: string;
 
   @Column()
+  @IsDefined()
   party_size: number;
 
 
@@ -24,5 +29,7 @@ export class Reservation {
     transformer: dateTransformer,
     type: "datetime"
   })
+  @IsDefined()
+  @IsDateString()
   scheduled_at: string | Date;
 }
