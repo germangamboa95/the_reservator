@@ -15,7 +15,10 @@
         </span>
       </div>
     </div>
-    <AvailabilityCreate :timeBlocks="timeBlocks" />
+    <AvailabilityCreate
+      @time_block_created="loadTimeblocks"
+      :timeBlocks="timeBlocks"
+    />
     <AvailabilityBlockList class="blocks" :blocks="availableTimes" />
   </div>
 </template>
@@ -42,9 +45,7 @@ export default defineComponent({
   },
   async mounted() {
     await api.login();
-    const { data } = await api.getTimeBlocks();
-
-    this.availableTimes = data.data;
+    this.loadTimeblocks();
   },
   computed: {
     timeBlocks() {
@@ -86,6 +87,13 @@ export default defineComponent({
 
       return blocks;
     }
+  },
+  methods: {
+    async loadTimeblocks() {
+      const { data } = await api.getTimeBlocks();
+
+      this.availableTimes = data.data;
+    }
   }
 });
 </script>
@@ -93,14 +101,6 @@ export default defineComponent({
 
 
 <style lang="scss" scoped>
-.picker {
-  > .box {
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    background-color: red;
-  }
-}
 .time-labels {
   font-size: 13px;
   width: 100%;

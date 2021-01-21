@@ -12,7 +12,6 @@ import { api } from "./api";
 
 export default defineComponent({
   async mounted() {
-    // Mock auth & load jwt into client
     await api.login();
   }
 });
@@ -57,6 +56,7 @@ export default defineComponent({
   margin: auto 1rem;
 }
 
+.availability-info,
 .scheduling-info,
 .contact-info {
   display: flex;

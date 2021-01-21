@@ -1,22 +1,24 @@
 <template>
   <form v-on:submit.prevent="handleSubmit">
     <h2>Make Availability Block</h2>
+    <fieldset class="availability-info">
+      <div class="field-group">
+        <label>Capacity</label>
+        <input type="number" v-model="form.capacity" />
+      </div>
 
-    <div class="field-group">
-      <label>Capacity</label>
-      <input type="number" v-model="form.capacity" />
-    </div>
+      <div class="field-group">
+        <label>Time Block</label>
+        <select v-model="form.start_at">
+          <template v-for="time in timeBlocks" :key="time.time">
+            <option v-if="time.isUsed === false" :value="time.time">
+              {{ formatHour(time.time, "display") }}
+            </option>
+          </template>
+        </select>
+      </div>
+    </fieldset>
 
-    <div class="field-group">
-      <label>Time Block</label>
-      <select v-model="form.start_at">
-        <template v-for="time in timeBlocks" :key="time.time">
-          <option v-if="time.isUsed === false" :value="time.time">
-            {{ formatHour(time.time, "display") }}
-          </option>
-        </template>
-      </select>
-    </div>
     <button>Create</button>
   </form>
 </template>
@@ -32,24 +34,21 @@ export default defineComponent({
     timeBlocks: {
       type: Array,
       required: true
+    },
+    availableTimes: {
+      type: Array,
+      required: true
     }
   },
   mixins: [DateMixin],
   data() {
     return {
-      availableTimes: [],
       form: {
         capacity: "",
         start_at: "",
         end_at: ""
       }
     };
-  },
-  async mounted() {
-    await api.login();
-    const { data } = await api.getTimeBlocks();
-
-    this.availableTimes = data.data;
   },
   methods: {
     async handleSubmit() {
@@ -64,9 +63,7 @@ export default defineComponent({
 
       await api.createTimeBlocks(form);
 
-      const { data } = await api.getTimeBlocks();
-
-      this.availableTimes = data.data;
+      this.$emit("time_block_created");
 
       this.form = {
         capacity: "",
