@@ -1,11 +1,11 @@
-import { Controller, Get } from "@overnightjs/core";
+import { Controller, Post } from "@overnightjs/core";
 import { JwtManager } from "@overnightjs/jwt";
 import { Request, Response } from "express";
 import { RestaurantRepository } from "../restaurants/RestaurantRepository";
 
 @Controller("auth")
 export class AuthenticationController {
-    @Get("login")
+    @Post("login")
     protected async test(req: Request, res: Response) {
 
 

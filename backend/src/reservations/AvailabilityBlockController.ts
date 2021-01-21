@@ -21,7 +21,6 @@ export class AvailabilityBlockController {
     }
 
 
-
     @Post("")
     protected async store(req: ISecureRequest, res: Response) {
         const restaurantId = req.payload.restaurant_id
@@ -29,7 +28,7 @@ export class AvailabilityBlockController {
 
 
         const AvailabilityBlock: AvailabilityBlock = await AvailabilityBlockRepository().save({
-            restaurant: restaurantId,
+            restaurantId: restaurantId,
             ...data
         })
 

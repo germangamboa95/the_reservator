@@ -19,7 +19,7 @@ describe("Authentication Api", () => {
     });
 
     it("returns jwt", async () => {
-        const response = await request.get("/auth/login");
+        const response = await request.post("/auth/login");
 
         expect(response.status).toBe(200)
         expect(response.body).toHaveProperty('jwt')

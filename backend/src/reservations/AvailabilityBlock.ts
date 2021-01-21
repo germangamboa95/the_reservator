@@ -8,9 +8,9 @@ import { dateTransformer } from "../utils";
 export class AvailabilityBlock {
 
   @PrimaryGeneratedColumn("uuid")
-  id: string
+  id: string;
 
-  @Column("uuid")
+  @Column()
   restaurantId: string
   @ManyToOne(() => Restaurant, restaurant => restaurant.availabilityBlocks)
   restaurant: Restaurant;

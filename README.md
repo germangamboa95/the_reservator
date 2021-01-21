@@ -48,7 +48,7 @@ Routes
   "data": [
     {
       "id":"",
-      "location_id": "",
+      "restaurantId": "",
       "block_start": "",
       "block_end": "",
       "stock": ""
@@ -75,21 +75,19 @@ Routes
 }
 ```
 
-`GET /reservations/inventories`
+`GET /reservations/times`
 
 ```json
 {
   "data": [
-    {
-      "time": "9:00",
-      "current": 0,
-      "max": 3
+     {
+      "id":"",
+      "restaurantId": "",
+      "block_start": "",
+      "block_end": "",
+      "stock": "",
+      "reservation_count": ""
     },
-    {
-      "time": "9:00",
-      "current": 0,
-      "max": 3
-    }
   ]
 }
 ```
