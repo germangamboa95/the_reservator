@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { api } from "@/api";
-import Vue, { defineComponent } from "vue";
+import { defineComponent } from "vue";
 import ReservationList from "../components/ReversavtionList.vue";
 import ReservationCreate from "../components/ReservationCreate.vue";
 export default defineComponent({

@@ -5,7 +5,7 @@
       <legend>Contact Information</legend>
       <div class="field-group">
         <label>Name</label>
-        <input type="text" v-model="form.name" />
+        <input type="text" v-model.trim="form.name" />
       </div>
       <div class="field-group">
         <label>Email</label>
@@ -36,7 +36,9 @@
         </select>
       </div>
     </fieldset>
-    <button type="submit">Creates</button>
+    <div class="btn-container">
+      <button class="submit-btn" type="submit">Create</button>
+    </div>
   </form>
 </template>
 
@@ -45,7 +47,6 @@
 import { api } from "../api";
 import { format } from "date-fns";
 import { defineComponent } from "vue";
-import { utcToZonedTime, zonedTimeToUtc } from "date-fns-tz";
 import DateMixin from "@/mixins/DateMixin";
 
 export default defineComponent({

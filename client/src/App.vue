@@ -68,4 +68,8 @@ export default defineComponent({
     flex-direction: row;
   }
 }
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
 </style> 

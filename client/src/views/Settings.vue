@@ -27,7 +27,7 @@
 import { defineComponent } from "vue";
 import { api } from "@/api";
 import { addHours, addMinutes } from "date-fns";
-import { utcToZonedTime, zonedTimeToUtc } from "date-fns-tz";
+
 import AvailabilityBlockList from "@/components/AvailabilityBlockList.vue";
 import AvailabilityCreate from "@/components/AvailabilityCreate.vue";
 import DateMixin from "@/mixins/DateMixin";

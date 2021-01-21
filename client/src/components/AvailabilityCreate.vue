@@ -18,8 +18,9 @@
         </select>
       </div>
     </fieldset>
-
-    <button>Create</button>
+    <div class="btn-container">
+      <button class="submit-btn" type="submit">Create</button>
+    </div>
   </form>
 </template>
 
